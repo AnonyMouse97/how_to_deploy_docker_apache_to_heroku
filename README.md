@@ -1,6 +1,6 @@
 # How to deploy Docker with Apache to Heroku ?
 
-I realize this tutorial to allow my teammate to be able to deploy their "Cogip" project which is requested of us during our training at BeCode Liège.
+I realize this tutorial to allow my teammates to be able to deploy their "Cogip" project which is requested of us during our training at BeCode Liège.
 
 Apache, by default, listens on port 80 (HTTP), this isn’t a problem when running the server on your machine. But some cloud providers require that containers use different ports.
 
@@ -16,11 +16,11 @@ For this tutorial you will need :
 - Composer (Included in the ``Dockerfile``)
 - Your project deployed to GitHub
 
-I suggest you use the same `Dockerfile` and `docker-compose.yml` from this repository (do not forget the `conf` folder).
+You need to use the same `Dockerfile` and `docker-compose.yml` from this repository (do not forget the `conf` folder).
 
-> **NOTE:** There are two possibilities for your database. You can use it locally but Heroku will need an add-on like [ClearDB MySQL](https://devcenter.heroku.com/articles/cleardb) (There is a free option but Heroku requires you to enter a credit card). For this project I would use [RemoteMySQL](https://remotemysql.com/) which is a free remote database.
+> **NOTE:** There are two possibilities for your database. You can use it locally but Heroku will need an add-on like [ClearDB MySQL](https://devcenter.heroku.com/articles/cleardb) (There is a free option but Heroku requires you to enter a credit card). For this guide I would use [RemoteMySQL](https://remotemysql.com/) which is a free remote database.
 
-> **NOTE2:** Ensure the start-apache file in the `conf` folder is exectable with de command line below 
+> **NOTE2:** Ensure the ``start-apache`` file in the `conf` folder is executable with de command line below 
 ```
 chmod 755 start-apache
 ```
@@ -80,3 +80,9 @@ In your terminal at the root of your project type :
     ```
     heroku container:release web --app YOUR_HEROKU_APP_NAME
     ```
+
+Ref :
+- https://devcenter.heroku.com/categories/deploying-with-docker
+- https://medium.com/@sonusamjoseph/deploying-your-legacy-php-application-on-heroku-with-docker-2cbab94b5c46
+- https://semaphoreci.com/community/tutorials/dockerizing-a-php-application
+## Your application is now deployed, configure your environment variables
