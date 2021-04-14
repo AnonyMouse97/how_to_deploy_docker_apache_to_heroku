@@ -140,7 +140,7 @@ In your terminal at the root of your project type :
     ```
     (Type "exit" for leave the container)
 
-### Configure Composer
+### Configure phpdotenv
 
 Now that your library is installed, we can configure it.
 
