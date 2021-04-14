@@ -4,7 +4,7 @@ I realize this tutorial to allow my teammates to be able to deploy their "Cogip"
 
 Apache, by default, listens on port 80 (HTTP), this isn’t a problem when running the server on your machine. But some cloud providers require that containers use different ports.
 
-In this repository I will detail how to configure an apache environment to deploy it on heroku.
+In this repository I will detail how to configure an apache environment to deploy it on Heroku.
 
 
 ## Set up
@@ -16,7 +16,7 @@ For this tutorial you will need :
 - Composer (Included in the ``Dockerfile``)
 - Your project deployed to GitHub
 
-You need to use the same `Dockerfile` and `docker-compose.yml` from this repository (do not forget the `conf` folder).
+You need to use the same `Dockerfile`, `docker-compose.yml` and `heroku.yml` from this repository (do not forget the `conf` folder).
 
 > **NOTE:** There are two possibilities for your database. You can use it locally but Heroku will need an add-on like [ClearDB MySQL](https://devcenter.heroku.com/articles/cleardb) (There is a free option but Heroku requires you to enter a credit card). For this guide I would use [RemoteMySQL](https://remotemysql.com/) which is a free remote database.
 
@@ -53,7 +53,7 @@ You can refer to this guide [Install Heroku CLI](https://devcenter.heroku.com/ar
 
 - Go to automatic deploy, select your branch and enable automatic deployment
 
-### Now that your project is linked to Heroku, we need to tell it that we are using docker
+### Now that your project is linked to Heroku, we need to tell it that we are using Docker
 
 
 In your terminal at the root of your project type :
@@ -81,8 +81,114 @@ In your terminal at the root of your project type :
     heroku container:release web --app YOUR_HEROKU_APP_NAME
     ```
 
+## Your application is now deployed, configure your environment variables
+
+### Set environment variables for Heroku
+
+In your terminal at the root of your project type :
+- Set a config var 
+    ```
+    heroku config:set DB_NAME=VALUE --app YOUR_HEROKU_APP_NAME
+    ```
+
+- View current config var values
+    ```
+    heroku config --app YOUR_HEROKU_APP_NAME
+    ```
+- Remove a config var
+    ```
+    heroku config:unset DB_NAME --app YOUR_HEROKU_APP_NAME
+    ```
+
+You can now use your variables, for example : 
+
+```
+$dbUsername = getenv('DB_NAME');
+$dbPassword = getenv('DB_PASSWORD');
+
+$db = new PDO("mysql:host=remotemysql;dbname=$dbUsername;port=3306","$dbUsername","$dbPassword");
+```
+>**IMPORTANT** Your variables will only be accessible on Heroku, during your development phase you must use another environment of variables
+
+### Set environment variables during the development
+
+Normally, **you must** set up this environment **before deploying your project on GitHub**
+
+For my development environment, I used a Composer library (vlucas/phpdotenv)
+
+You can find the library documentation [here](https://github.com/vlucas/phpdotenv).
+
+### Access to Composer via Docker
+
+In your terminal at the root of your project type :
+
+- See all active containers
+    ```
+    docker ps -a
+    ```
+    Copy the php container ID number.
+
+- Run a command in a running container (to access Composer)
+    ```
+    docker exec -ti YOUR_ID_NUMBER sh
+    ```
+
+- Install phpdotenv library
+    ```
+    composer require vlucas/phpdotenv
+    ```
+    (Type "exit" for leave the container)
+
+### Configure Composer
+
+Now that your library is installed, we can configure it.
+
+Create a file named .env at the root of your index.php. (This is where we will declare our environment variables for development)
+
+Create a `.gitignore` at the root of your project and add this :
+```
+vendor
+src/.env
+```
+
+In your index.php, add this : 
+```
+require('vendor/autoload.php');
+
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
+```
+
+In your .env , declare your variables : 
+
+```
+DB_NAME = "MY_VALUE"
+DB_PASSWORD = "MY_VALUE"
+```
+
+In your file where your PDO object is (manager.php), add this : 
+
+```
+if (file_exists(__DIR__ . '/../.env')) {
+            $dbUsername = $_ENV['DB_NAME'];
+            $dbPassword= $_ENV['DB_PASSWORD'];
+        } else {
+            $dbUsername = getenv('DB_NAME');
+            $dbPassword = getenv('DB_PASSWORD');
+        }
+```
+> This allows you to define which variables to use,
+If the file exists it means that you are in development otherwise the values will be that of Heroku
+
+>I still specify that it will not work if you use a local database, you must install a Heroku add-on
+
+
+
+### I hope this tutorial is clear, if you have any questions do not hesitate to contact me
+
 Ref :
 - https://devcenter.heroku.com/categories/deploying-with-docker
 - https://medium.com/@sonusamjoseph/deploying-your-legacy-php-application-on-heroku-with-docker-2cbab94b5c46
 - https://semaphoreci.com/community/tutorials/dockerizing-a-php-application
-## Your application is now deployed, configure your environment variables

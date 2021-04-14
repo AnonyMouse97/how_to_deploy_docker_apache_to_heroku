@@ -1,9 +1,12 @@
 <?php 
 
-//require_once('database.php');
+require('vendor/autoload.php');
 
+if (file_exists(__DIR__ . '/.env')) {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+}
 
-phpinfo();
 
 ?>
 
@@ -15,6 +18,6 @@ phpinfo();
 	<title>Apache 2</title>
 </head>
 <body>
-
+	<h1>Hello Jepsens 4.27</h1>
 </body>
 </html>

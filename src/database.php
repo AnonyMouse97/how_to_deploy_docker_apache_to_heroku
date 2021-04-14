@@ -1,7 +1,16 @@
 <?php
 
 try {
-    $db = new PDO("mysql:host=mysql;dbname=database;port=3306","root","root");
+
+    if (file_exists(__DIR__ . '/../.env')) {
+        $dbUsername = $_ENV['DB_NAME'];
+        $dbPassword= $_ENV['DB_PASSWORD'];
+    } else {
+        $dbUsername = getenv('DB_NAME');
+        $dbPassword = getenv('DB_PASSWORD');
+    }
+
+    $db = new PDO("mysql:host=mysql;dbname=$dbUsername;port=3306","$dbUsername","$dbPassword");
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch(Exception $e) {
     echo $e->getMessage();
