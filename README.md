@@ -123,7 +123,7 @@ You can find the library documentation [here](https://github.com/vlucas/phpdoten
 
 In your terminal at the root of your project type :
 
-- See all active containers
+- Show all active containers
     ```
     docker ps -a
     ```
