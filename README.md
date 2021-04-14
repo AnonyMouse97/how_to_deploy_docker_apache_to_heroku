@@ -20,7 +20,7 @@ You need to use the same `Dockerfile`, `docker-compose.yml` and `heroku.yml` fro
 
 > **NOTE:** There are two possibilities for your database. You can use it locally but Heroku will need an add-on like [ClearDB MySQL](https://devcenter.heroku.com/articles/cleardb) (There is a free option but Heroku requires you to enter a credit card). For this guide I would use [RemoteMySQL](https://remotemysql.com/) which is a free remote database.
 
-> **NOTE2:** Ensure the ``start-apache`` file in the `conf` folder is executable with de command line below 
+> **IMPORTANT:** Ensure the ``start-apache`` file in the `conf` folder is executable with de command line below 
 ```
 chmod 755 start-apache
 ```
