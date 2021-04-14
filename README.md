@@ -182,7 +182,9 @@ if (file_exists(__DIR__ . '/../.env')) {
 > This allows you to define which variables to use,
 If the file exists it means that you are in development otherwise the values will be that of Heroku
 
->I still specify that it will not work if you use a local database, you must install a Heroku add-on
+I still specify that it will not work if you use a local database, you must install a Heroku add-on
+
+I didn't specify how to configure the Heroku ports, it's all in the Dockerfile. You can follow the documentations below for more information
 
 
 
