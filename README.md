@@ -40,15 +40,39 @@ You can refer to this guide [Install Heroku CLI](https://devcenter.heroku.com/ar
 
 ## Deploy Docker to Heroku
 
-Now that you have installed Heroku CLI we can deploy our containers.
-
 ### Link your github project to Heroku
 
-- Go to this [link](https://dashboard.heroku.com/new-app) and create your project.
+- Go to this [link](https://dashboard.heroku.com/new-app) and create your project
 
-- Go to deploy and Select "Connect to GitHub"
+- Go to deploy and select "Connect to GitHub"
 
 - Go to automatic deploy, select your branch and enable automatic deployment
 
+### Now that your project is linked to Heroku, we need to tell it that we are using docker
+
 
 In your terminal at the root of your project type :
+- Log in to Container Registry:
+    ```
+    heroku container:login
+    ```
+
+- Apache configuration
+    ```
+    heroku labs:enable --app=YOUR_HEROKU_APP_NAME runtime-new-layer-extract
+    ```
+
+- Make sure your stack is in a container
+    ```
+    heroku stack:set container --app YOUR_HEROKU_APP_NAME
+    ```
+
+- Build the image and push to Container Registry:
+    ```
+    heroku container:push web --app YOUR_HEROKU_APP_NAME
+    ```
+    
+- Then release the image to your app:
+    ```
+    heroku container:release web --app YOUR_HEROKU_APP_NAME
+    ```
