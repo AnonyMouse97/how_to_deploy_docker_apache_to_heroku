@@ -96,10 +96,6 @@ In your terminal at the root of your project type :
     ```
     heroku config --app YOUR_HEROKU_APP_NAME
     ```
-- Remove a config var
-    ```
-    heroku config:unset DB_NAME --app YOUR_HEROKU_APP_NAME
-    ```
 
 You can now use your variables, for example : 
 
@@ -110,6 +106,8 @@ $dbPassword = getenv('DB_PASSWORD');
 $db = new PDO("mysql:host=remotemysql;dbname=$dbUsername;port=3306","$dbUsername","$dbPassword");
 ```
 >**IMPORTANT:** Your variables will only be accessible on Heroku, during your development phase you must use another environment of variables
+
+You can refer to this guide [Config vars](https://devcenter.heroku.com/articles/config-vars).
 
 ### Set environment variables during the development
 
