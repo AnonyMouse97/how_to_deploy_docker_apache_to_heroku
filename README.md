@@ -9,6 +9,9 @@ In this repository I will detail how to configure an apache environment to deplo
 
 ## Set up
 
+Normally, **you must** set up an environment variables for development **before deploying your project on GitHub**.
+You can see how to do it [below](https://github.com/Maxime-Bott/how_to_deploy_docker_apache_to_heroku/blob/main/README.md#set-environment-variables-during-the-development).
+
 For this tutorial you will need :
 - Docker
 - Free Heroku account
@@ -111,7 +114,6 @@ You can refer to this guide [Config vars](https://devcenter.heroku.com/articles/
 
 ### Set environment variables during the development
 
-Normally, **you must** set up this environment **before deploying your project on GitHub**.
 
 For my development environment, I used a Composer library (vlucas/phpdotenv).
 
@@ -142,7 +144,7 @@ In your terminal at the root of your project type :
 
 Now that your library is installed, we can configure it.
 
-Create a file named .env at the root of your index.php. This is where we will declare our environment variables for development.
+Create a file named `.env` at the root of your index.php. This is where we will declare our environment variables for development.
 
 Create a `.gitignore` at the root of your project and add this :
 ```
