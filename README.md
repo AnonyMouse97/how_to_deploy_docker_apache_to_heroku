@@ -144,7 +144,7 @@ In your terminal at the root of your project type :
 
 Now that your library is installed, we can configure it.
 
-Create a file named `.env` at the root of your index.php. This is where we will declare our environment variables for development.
+Create a file named `.env` **at the root** of your `index.php`. This is where we will declare our environment variables for development.
 
 Create a `.gitignore` at the root of your project and add this :
 ```
