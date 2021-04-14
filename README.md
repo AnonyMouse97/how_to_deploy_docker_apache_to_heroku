@@ -17,6 +17,7 @@ For this tutorial you will need :
 - Your project deployed to GitHub
 
 You need to use the same `Dockerfile`, `docker-compose.yml` and `heroku.yml` from this repository (do not forget the `conf` folder).
+Respect the folder architecture as in this repository.
 
 > **NOTE:** There are two possibilities for your database. You can use it locally but Heroku will need an add-on like [ClearDB MySQL](https://devcenter.heroku.com/articles/cleardb) (There is a free option but Heroku requires you to enter a credit card). For this guide I would use [RemoteMySQL](https://remotemysql.com/) which is a free remote database.
 
@@ -108,7 +109,7 @@ $dbPassword = getenv('DB_PASSWORD');
 
 $db = new PDO("mysql:host=remotemysql;dbname=$dbUsername;port=3306","$dbUsername","$dbPassword");
 ```
->**IMPORTANT** Your variables will only be accessible on Heroku, during your development phase you must use another environment of variables
+>**IMPORTANT:** Your variables will only be accessible on Heroku, during your development phase you must use another environment of variables
 
 ### Set environment variables during the development
 
