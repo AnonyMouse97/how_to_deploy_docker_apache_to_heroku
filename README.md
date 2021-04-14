@@ -46,7 +46,7 @@ You can refer to this guide [Install Heroku CLI](https://devcenter.heroku.com/ar
 
 ## Deploy Docker to Heroku
 
-### Link your github project to Heroku
+### Link your GitHub project to Heroku
 
 - Go to this [link](https://dashboard.heroku.com/new-app) and create your project
 
