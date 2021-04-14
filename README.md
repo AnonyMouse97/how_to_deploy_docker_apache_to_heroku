@@ -66,7 +66,7 @@ In your terminal at the root of your project type :
     heroku container:login
     ```
 
-- Apache configuration
+-  Use new layer extraction tool for container image
     ```
     heroku labs:enable --app=YOUR_HEROKU_APP_NAME runtime-new-layer-extract
     ```
