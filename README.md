@@ -112,9 +112,9 @@ $db = new PDO("mysql:host=remotemysql;dbname=$dbUsername;port=3306","$dbUsername
 
 ### Set environment variables during the development
 
-Normally, **you must** set up this environment **before deploying your project on GitHub**
+Normally, **you must** set up this environment **before deploying your project on GitHub**.
 
-For my development environment, I used a Composer library (vlucas/phpdotenv)
+For my development environment, I used a Composer library (vlucas/phpdotenv).
 
 You can find the library documentation [here](https://github.com/vlucas/phpdotenv).
 
@@ -143,7 +143,7 @@ In your terminal at the root of your project type :
 
 Now that your library is installed, we can configure it.
 
-Create a file named .env at the root of your index.php. (This is where we will declare our environment variables for development)
+Create a file named .env at the root of your index.php. This is where we will declare our environment variables for development.
 
 Create a `.gitignore` at the root of your project and add this :
 ```
@@ -151,7 +151,7 @@ vendor
 src/.env
 ```
 
-In your index.php, add this : 
+In your `index.php`, add this : 
 ```
 require('vendor/autoload.php');
 
@@ -161,14 +161,14 @@ if (file_exists(__DIR__ . '/.env')) {
 }
 ```
 
-In your .env , declare your variables : 
+In your `.env` , declare your variables : 
 
 ```
 DB_NAME = "MY_VALUE"
 DB_PASSWORD = "MY_VALUE"
 ```
 
-In your file where your PDO object is (manager.php), add this : 
+In your file where your PDO object is (`manager.php`), add this : 
 
 ```
 if (file_exists(__DIR__ . '/../.env')) {
@@ -182,9 +182,9 @@ if (file_exists(__DIR__ . '/../.env')) {
 > This allows you to define which variables to use,
 If the file exists it means that you are in development otherwise the values will be that of Heroku
 
-I still specify that it will not work if you use a local database, you must install a Heroku add-on
+I still specify that it will not work if you use a local database, you must install an Heroku add-on as specified [here](https://github.com/Maxime-Bott/how_to_deploy_docker_apache_to_heroku#set-up)
 
-I didn't specify how to configure the Heroku ports, it's all in the Dockerfile. You can follow the documentations below for more information
+I didn't specify how to configure the Heroku ports, Everything is in the `Dockerfile` and in the `conf` folder. You can follow the documentations below for more information
 
 
 
