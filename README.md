@@ -102,7 +102,7 @@ In your terminal at the root of your project type :
 
 You can now use your variables, for example : 
 
-```
+```php
 $dbUsername = getenv('DB_NAME');
 $dbPassword = getenv('DB_PASSWORD');
 
@@ -153,7 +153,7 @@ src/.env
 ```
 
 In your `index.php`, add this : 
-```
+```php
 
 
 if (file_exists(__DIR__ . '/.env')) {
@@ -172,7 +172,7 @@ DB_PASSWORD = "MY_VALUE"
 
 In your file where your PDO object is (`manager.php`), add this : 
 
-```
+```php
 if (file_exists(__DIR__ . '/../.env')) {
             $dbUsername = $_ENV['DB_NAME'];
             $dbPassword= $_ENV['DB_PASSWORD'];
