@@ -106,7 +106,7 @@ You can now use your variables, for example :
 $dbUsername = getenv('DB_NAME');
 $dbPassword = getenv('DB_PASSWORD');
 
-$db = new PDO("mysql:host=remotemysql;dbname=$dbUsername;port=3306","$dbUsername","$dbPassword");
+$db = new PDO("mysql:host=remotemysql.com;dbname=$dbUsername;port=3306","$dbUsername","$dbPassword");
 ```
 >**IMPORTANT:** Your variables will only be accessible on Heroku, during your development phase you must use another environment of variables
 
